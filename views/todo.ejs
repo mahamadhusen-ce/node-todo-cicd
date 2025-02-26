@@ -1,77 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>kem cho ! aa apdu Todo List APP che</title>
+        <title>kem cho! aa apdu Todo List APP che</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
+                background-color: #e3f2fd;
                 color: #333;
                 margin: 0;
                 padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                flex-direction: column;
+            }
+
+            .container {
+                width: 40%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                text-align: center;
             }
 
             h1 {
                 background-color: #4CAF50;
                 color: white;
+                padding: 15px;
                 margin: 0;
-                padding: 20px;
-                text-align: center;
+                border-radius: 10px 10px 0 0;
+                font-size: 20px;
             }
 
             ul {
                 list-style: none;
                 padding: 0;
+                margin: 20px 0;
             }
 
             ul li {
                 background: #fff;
                 border: 1px solid #ddd;
-                margin-bottom: 10px;
-                padding: 10px;
+                margin: 10px 0;
+                padding: 15px;
                 position: relative;
+                border-radius: 5px;
+                font-size: 18px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                opacity: 0;
+                transform: translateX(-20px);
+                animation: fadeIn 0.5s forwards;
             }
 
-            ul li a {
-                color: #333;
-                text-decoration: none;
-                font-weight: bold;
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             }
 
-            ul li a:hover {
-                color: #4CAF50;
+            ul li:hover {
+                background: #f1f1f1;
+            }
+
+            .delete-btn,
+            .edit-btn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                transition: transform 0.2s ease;
             }
 
             .delete-btn {
                 color: red;
-                position: absolute;
                 right: 10px;
-                top: 10px;
             }
 
             .edit-btn {
                 color: #FFC107;
-                position: absolute;
                 right: 40px;
-                top: 10px;
+            }
+
+            .delete-btn:hover,
+            .edit-btn:hover {
+                transform: translateY(-50%) scale(1.2);
             }
 
             form {
-                background: #fff;
-                padding: 20px;
-                margin-top: 20px;
-            }
-
-            label {
-                display: block;
-                margin-bottom: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: white;
+                padding: 15px;
+                border-radius: 5px;
             }
 
             input[type="text"] {
-                width: 100%;
+                width: 80%;
                 padding: 10px;
                 margin-bottom: 10px;
                 border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 16px;
             }
 
             input[type="submit"] {
@@ -80,6 +113,9 @@
                 border: none;
                 padding: 10px 20px;
                 cursor: pointer;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: background 0.3s;
             }
 
             input[type="submit"]:hover {
@@ -89,23 +125,23 @@
     </head>
 
     <body>
-        <h1>Hello Junoon Batch 8 (Jenkins), Write your plan on Learning Jenkins</h1>
-        <ul>
-            <% todolist.forEach(function(todo, index) { %>
-            <li>
-                <a href="/todo/delete/<%= index %>" class="delete-btn">✘</a>
-                <a href="/todo/<%= index %>" class="edit-btn">✎</a>
-                <%- todo %>
-            </li>
-            <% }); %>
-        </ul>
+        <div class="container">
+            <h1>Hello  i'm husen kureshi, bike batha maja ma </h1>
+            <ul>
+                <% todolist.forEach(function(todo, index) { %>
+                <li style="animation-delay: <%= index * 0.1 %>s">
+                    <a href="/todo/delete/<%= index %>" class="delete-btn">✘</a>
+                    <a href="/todo/<%= index %>" class="edit-btn">✎</a>
+                    <%- todo %>
+                </li>
+                <% }); %>
+            </ul>
 
-        <form action="/todo/add/" method="post">
-            <p>
+            <form action="/todo/add/" method="post">
                 <label for="newtodo">What should I do?</label>
                 <input type="text" name="newtodo" id="newtodo" autofocus />
                 <input type="submit" value="Add" />
-            </p>
-        </form>
+            </form>
+        </div>
     </body>
 </html>
